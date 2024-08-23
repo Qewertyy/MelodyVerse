@@ -2,7 +2,7 @@
   "name": "connectverse",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "build/app.js",
   "scripts": {
     "build":"npm i && tsc",
     "dev": "npx ts-node src/app.ts",
