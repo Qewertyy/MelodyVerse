@@ -40,6 +40,8 @@ export default function Login({ className, ...props }: AuthFormProps) {
     setIsLoading(true);
     let formData = new FormData(event.currentTarget as HTMLFormElement) || null;
     if (!formData) {
+      console.log("Invalid form");
+      setIsLoading(loading);
       return;
     }
     const data = {} as loginData;

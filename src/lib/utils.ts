@@ -23,6 +23,9 @@ export function validatePassword(password : string) : { valid: boolean, errors: 
     errors.push("At least one special character");
   };
   const valid = errors.length === 0;
+  if (!valid) {
+    errors.push("Password is invalid");
+  };
   return {
     valid,
     errors: valid ? null : errors,
@@ -34,16 +37,20 @@ export function validateUsername(username: string): {
   errors: string[] | null;
 } {
   const errors: string[] = [];
-  if (!/^.{6,24}$/.test(username)) {
-    errors.push("Username must be between 6 and 24 characters.");
+
+  if (username.length > 25) {
+    errors.push("Must not exceed 25 characters");
   }
   if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-    errors.push("Username can only contain letters, numbers, and underscores.");
-  }
+    errors.push("Can only contain letters, numbers, and underscores");
+  };
 
   const valid = errors.length === 0;
+  if (!valid) {
+    errors.push("Username is invalid.");
+  };
   return {
     valid,
     errors: valid ? null : errors,
   };
-}
+};

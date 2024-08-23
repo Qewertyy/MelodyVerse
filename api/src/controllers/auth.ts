@@ -8,6 +8,14 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password } = req.body;
 
   try {
+    if (await userExists(email)) {
+      res.status(400).json({ success: false, message: "User already exists" });
+      return;
+    };
+    if (await isUsernameTaken(username)) {
+      res.status(400).json({ success: false, message: "Username is already taken" });
+      return;
+    };
     const user: IUser = new User({ username, email, password });
     await user.save();
 
@@ -19,6 +27,27 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ success: false, message: "Server Error", error: err.errorResponse.errmsg });
   }
 };
+
+const isUsernameTaken = async (username: string) => {
+  try {
+    const user = await User.findOne({ username });
+    return user !== null;
+  } catch (error) {
+    console.error("Error checking if username exists:", error);
+    return false;
+  }
+};
+
+const userExists = async (email: string): Promise<boolean> => {
+  try {
+    const user = await User.findOne({ email });
+    return user !== null;
+  } catch (error) {
+    console.error("Error checking if email exists:", error);
+    return false;
+  }
+};
+
 
 const authUser = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;

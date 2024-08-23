@@ -55,18 +55,18 @@ export const signup = (payload: signUpData) => async (dispatch: Dispatch) => {
     if (response instanceof AxiosError) {
       if (response.response) {
         data = response.response.data;
+      }else{
+        dispatch({ type: actionTypes.LOGIN_FAILURE, payload: "Server error" });
       }
-      dispatch({ type: actionTypes.LOGIN_FAILURE, payload: "Server error" });
-      return;
     } else {
       data = response.data;
-    }
+    };
 
     if (data.success) {
       dispatch({ type: actionTypes.REGISTER_SUCCESS, payload: data.token });
       localStorage.setItem("token", data.token);
     } else {
-      dispatch({ type: actionTypes.REGISTER_FAILURE, payload: data });
+      dispatch({ type: actionTypes.REGISTER_FAILURE, payload: data.message });
     }
   } catch (error) {
     dispatch({ type: actionTypes.REGISTER_FAILURE, payload: "Server error" });
@@ -93,9 +93,9 @@ export const fetchUser = (token: string) => async (dispatch: Dispatch) => {
     if (response instanceof AxiosError) {
       if (response.response) {
         data = response.response.data;
+      }else {
+        dispatch({ type: actionTypes.LOGIN_FAILURE, payload: "Server error" });
       }
-      dispatch({ type: actionTypes.LOGIN_FAILURE, payload: "Server error" });
-      return;
     } else {
       data = response.data;
     }
