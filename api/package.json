@@ -7,7 +7,8 @@
     "vercel-build": "echo hello",
     "build": "",
     "dev": "npx ts-node src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/app.js"
   },
   "author": "Qewertyy <https://github.com/Qewertyy>",
   "license": "MIT",
