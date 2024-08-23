@@ -12,5 +12,8 @@ Route.use(
     res.json({ success: true, user: req.user });
   }
 );
+Route.use("/", (req, res) => {
+  res.redirect("https://github.com/Qewertyy/MelodyVerse/tree/main/api");
+});
 
 export default Route;
