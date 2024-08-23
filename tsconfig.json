@@ -17,5 +17,5 @@
     "strict": true,
     "jsx": "react-jsx",
   },
-  "exclude": ["node_modules","backend"]
+  "exclude": ["node_modules","api"]
 }
