@@ -26,7 +26,7 @@ export default function RegisterPage() {
             <p className="text-lg">
               &ldquo;Life without music would be a mistake.&rdquo;
             </p>
-            <footer className="text-sm">Unknown</footer>
+            <footer className="text-sm">Friedrich Nietzsche</footer>
           </blockquote>
         </div>
       </div>
